@@ -46,15 +46,25 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _randomInteger = 0;
+  List<String> _names = [
+    'Adam',
+    'Andrea',
+    'Chris',
+    'Dan',
+    'Harry',
+    'Mostafa',
+    'Rob',
+    'Tom',
+  ];
 
-  void _randomiseInteger() {
+  void _chooseRandomName() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
-      // _randomInteger without calling setState(), then the build method would not be
+      // _chooseRandomPerson without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      int randomInteger = math.Random.secure().nextInt(10);
+      int randomInteger = math.Random.secure().nextInt(_names.length);
 
       _randomInteger = randomInteger;
     });
@@ -62,8 +72,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    String _randomName = _names[_randomInteger];
+
     // This method is rerun every time setState is called, for instance as done
-    // by the _randomiseInteger method above.
+    // by the _chooseRandomPerson method above.
     //
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
@@ -95,17 +107,17 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Here is a random number:',
+              'Here is a random name:',
             ),
             Text(
-              '$_randomInteger',
+              '$_randomName',
               style: Theme.of(context).textTheme.display1,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _randomiseInteger,
+        onPressed: _chooseRandomName,
         tooltip: 'Randomise',
         child: Icon(Icons.autorenew),
       ), // This trailing comma makes auto-formatting nicer for build methods.
