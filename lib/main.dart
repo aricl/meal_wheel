@@ -74,6 +74,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     String _randomName = _names[_randomInteger];
 
+    List<Text> names = [];
+    for (String name in _names) {
+      names.add(Text(name));
+      names.add(Text(''));
+    }
+
     // This method is rerun every time setState is called, for instance as done
     // by the _chooseRandomPerson method above.
     //
@@ -106,6 +112,10 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text(
+              'Here is a list of names:',
+            ),
+            ...names,
             Text(
               'Here is a random name:',
             ),
